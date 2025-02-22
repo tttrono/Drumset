@@ -1,12 +1,11 @@
-import javax.swing.*;
 
 public class SceneStarter {
 
 	public static void main(String[] args) {
 
-		int w = 1281;
-		int h = 658;
-		SceneFrame sceneframe = new SceneFrame(w,h);
+		//SceneFrame sceneframe = new SceneFrame(1281, 658);
+		//SceneFrame sceneframe = new SceneFrame(800, 600);
+		SceneFrame sceneframe = new SceneFrame();
 		sceneframe.setupButtonListeners();
 		sceneframe.setUpGUI();
 		

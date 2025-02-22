@@ -6,22 +6,38 @@ import java.awt.geom.AffineTransform;
 
 import Shapes.Colors;
 import Shapes.Rectangle;
+import Shapes.DrawingObject;
 
-public class BassDrum {
+public class BassDrum implements DrawingObject {
 	
-	//double x
+	//double x, y;
+	int x;
+	int y;
+	double scale_x; 
+	double scale_y;
 
-	public BassDrum(Graphics2D g2d) {
+	public BassDrum() {
+		
+		scale_x = 1.0;
+		scale_y = 1.0;
+	}
+	
+	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.		
-		int x = 640;
-		int y = 150;
+		x = 640;
+		y = 150;
 		
-		//AffineTransform reset = g2d.getTransform();
-		//g2d.scale(2, 2);
+		x = (int) Math.round(x/scale_x);
+		y = (int) Math.round(y/scale_y);
+		
+		AffineTransform reset = g2d.getTransform();
+		g2d.scale(scale_x, scale_y);
 		
 		// Create base drum case		
-		// WHSC = X, Y, Width, Height, Stroke, Color
+		// XY_WHSC = X, Y, Width, Height, Stroke, Color
+		
+		//List<Shape> li = new List<Shape>();
 		Object[][] XY_WHSC = {{x, y, 300, 240, 0, Color.BLACK}, 			   // base drum case
 							  {x-(150/2), y+10, 150, 230, 0, Color.DARK_GRAY}, // lighted side
 							  {x, 30, 310, 20, 0, Colors.SILVER}, 			   // edge linings
@@ -40,12 +56,13 @@ public class BassDrum {
 			rectangle.draw(g2d);
 		}
 		
-		//g2d.setTransform(reset);
+		g2d.setTransform(reset);
 		
 	}
 	
-	void rescale() {
+	public void rescale() {
 		
+		scale_x = 1.02;
+		scale_y = 1.02;
 	}
-
 }

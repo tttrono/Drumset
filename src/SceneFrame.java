@@ -1,42 +1,59 @@
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.FlowLayout;
-import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import Cymbals.*;
+import Drums.*;
 
 public class SceneFrame {
 	
 	private JFrame frame;
-	private JButton button_controls;
-	private JButton button_drumroll;
+	private JButton controls;
+	private JButton drumroll;
 	private int width;
 	private int height;
 	
-	public SceneFrame(int w, int h) {
-		
+	SceneCanvas canvas;
+	
+	public SceneFrame() {
+	//public SceneFrame(int w, int h) {
+	
 		frame = new JFrame();
 		width = w;
 		height = h;
 		
-		button_controls = new JButton("Show controls");
-		button_drumroll = new JButton("Drum roll");
+		controls = new JButton("Show controls");
+		drumroll = new JButton("Drum roll");
 		
+		canvas = new SceneCanvas();
+		canvas.setPreferredSize(new Dimension(800, 600));
+		//canvas.setPreferredSize(new Dimension(width, height));
 	}
 	
 	public void setUpGUI() {
 		
-		//Container cp = frame.getContentPane();
-		FlowLayout flow = new FlowLayout();
+		Container contentPane = frame.getContentPane();
+		
+		//canvas.setPreferredSize(new Dimension(1281, 658));
+		//canvas.setPreferredSize(new Dimension(800, 600));
+		
+		//FlowLayout flow = new FlowLayout();
 		//cp.setLayout(flow);
 		//frame.setLayout(flow);
 		
-		frame.setSize(width, height);
-		frame.setTitle("DrumSet - Midterm Project - Trono");
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new GridLayout(1,2));
+		buttons.add(controls);
+		buttons.add(drumroll);
 		
-		SceneCanvas sc = new SceneCanvas(1281,658);
-		frame.add(sc);
-		//cp.add(sc);
+		contentPane.add(canvas, BorderLayout.CENTER);
+		contentPane.add(buttons, BorderLayout.SOUTH);
+		
+		//frame.setSize(width, height);
+		frame.setTitle("Midterm Project - Tibayan - Trono");
+		
+		//frame.add(canvas);
+		//cp.add(canvas);
 		
 		//cp.add(button_controls);
 		//cp.add(button_drumroll);
@@ -45,6 +62,7 @@ public class SceneFrame {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.pack();
 		frame.setVisible(true);
 		
 	}
@@ -56,19 +74,33 @@ public class SceneFrame {
 			public void actionPerformed(ActionEvent ae) {
 				Object o = ae.getSource();
 				
-				if (o == button_controls) { 
+				// testing
+				BassDrum bass 			 = canvas.getBassDrum();
+				FloorTom floortom  		 = canvas.getFloorTom();
+				RideCymbal ride 		 = canvas.getRideCymbal();
+				CrashCymbal crashcymbal2 = canvas.getCrashCymbal();
+				
+				if (o == controls) { 
 					//System.out.println("Press B for Bass");
 					//System.out.println("Press S for Snare");
+					//or mouse events instead 
 					
-				} else if (o == button_drumroll) {
-					//Play animation for drumroll
+				} else if (o == drumroll) {
+					//Play animation for drumplay
+					
+					// testing 
+					//bass.rescale();
+					//floortom.rescale();
+					//crashcymbal2.rescale();
+					ride.rescale();
 				}
 				
+				canvas.repaint();
 			}
 		};
 		
-		button_controls.addActionListener(buttonListener);
-		button_drumroll.addActionListener(buttonListener);
+		controls.addActionListener(buttonListener);
+		drumroll.addActionListener(buttonListener);
 		
 	}
 }

@@ -4,18 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import Shapes.Circle;
-import Shapes.Colors;
-import Shapes.DrawingObject;
+import Shapes.*;
 
-public class RideCymbal implements DrawingObject {
+/** Creates a CrashCymbal object. 
+ *  Generates from a center coordinate with x and y and creates circle rings with define colors. */
+public class CrashCymbal implements DrawingObject {
 	
 	double x;
 	double y;
 	double scale_x; 
 	double scale_y;
 
-	public RideCymbal() {
+	public CrashCymbal() {
 		
 		scale_x = 1.0;
 		scale_y = 1.0;
@@ -24,8 +24,8 @@ public class RideCymbal implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.
-		x = 930;
-		y = 350;
+		x = 300;
+		y = 400;
 		
 		x = x/scale_x;
 		y = y/scale_y;
@@ -35,9 +35,8 @@ public class RideCymbal implements DrawingObject {
 		
 		// Create base cymbal circle
 		// RSC = Radius, Stroke, Color
-		Object[][] RSC = {{135,	0, Colors.BRONZE_DARK}, 
-						  {10,	0, Color.BLACK}
-		};
+		Object[][] RSC = {{114, 0, Colors.BRONZE_LIGHT}, 
+						  {10,  0, Color.BLACK}};
 		
 		for (int i = 0; i < RSC.length; i++) {
 			//circle = new CircleO(x,y,radius,stroke,color);
@@ -48,15 +47,14 @@ public class RideCymbal implements DrawingObject {
 		}
 		
 		// Create concentric rings
-		int rings = 8;
-		double radius = 40;
+		int rings = 7;
+		double radius = 35;
 		float stroke = 3;
 		
 		for (int i = 0; i < rings; i++) {
-			
-			Circle circle = new Circle(x, y, radius,
-									   		 stroke,
-									   		 Colors.BRONZE_FINE);
+			Circle circle = new Circle(x, y, radius, 
+									   		 stroke, 
+									   		 Colors.BRONZE_SHADOW);
 			circle.draw(g2d);
 			
 			radius += 10;

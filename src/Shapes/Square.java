@@ -47,7 +47,11 @@ public class Square implements DrawingObject {
 		
 	}
 	
+	public void rotate(float degrees) {
+		
+	}
+	
 	//void adhocMethods() {
-	//	
+	//		
 	//}
 }

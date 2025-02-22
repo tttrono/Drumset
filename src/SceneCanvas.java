@@ -1,18 +1,45 @@
-import java.awt.*;
-import javax.swing.*;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.ArrayList;
+import javax.swing.JComponent;
 
 import Cymbals.*;
 import Drums.*;
 import Etc.*;
+import Shapes.DrawingObject;
 
 public class SceneCanvas extends JComponent {
 	
-	private int width;
-	private int height;
+	private DrumCarpet carpet;
+	private BassDrum bass;
+	private FloorTom floortom;
 	
-	public SceneCanvas(int w, int h) {
-		width = w;
-		height = h;
+	//private CrashCymbal crashcymbal1;
+	private CrashCymbal crashcymbal2;
+	private RideCymbal ride;
+	//private Chair chair;
+	
+	private ArrayList<DrawingObject> parts;
+	
+	public SceneCanvas() {
+		
+		parts = new ArrayList<DrawingObject>();
+		
+		carpet = new DrumCarpet();
+		bass = new BassDrum();
+		floortom = new FloorTom();
+		crashcymbal2 = new CrashCymbal();
+		ride = new RideCymbal();
+		
+		parts.add(carpet);
+		parts.add(bass);
+		parts.add(floortom);
+		//parts.add(crashcymbal1);
+		parts.add(crashcymbal2);
+		parts.add(ride);
+		//parts.add(chair);
 	}
 	
 	@Override
@@ -25,16 +52,25 @@ public class SceneCanvas extends JComponent {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHints(rh);
 		
-		//Floor floor = new Floor(g2d);
-		DrumCarpet carpet = new DrumCarpet(g2d);
-		
-		BassDrum bass = new BassDrum(g2d);
-		SnareDrum snare = new SnareDrum(g2d);
-		
-		Cymbal cymbal = new Cymbal(g2d);
-		RideCymbal ride = new RideCymbal(g2d);
-		
-		//Chair chair = new Chair(x,y,w,h);
-		
+		for (DrawingObject part: parts) {
+			part.draw(g2d);
+		}
 	}
+	
+	public BassDrum getBassDrum() {
+		return bass;
+	}
+	
+	public FloorTom getFloorTom() {
+		return floortom;
+	}
+	
+	public CrashCymbal getCrashCymbal() {
+		return crashcymbal2;
+	}
+	
+	public RideCymbal getRideCymbal() {
+		return ride;
+	}
+	
 }
