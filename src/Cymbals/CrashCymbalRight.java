@@ -8,14 +8,14 @@ import Shapes.*;
 
 /** Creates a CrashCymbal object. 
  *  Generates from a center coordinate with x and y and creates circle rings with define colors. */
-public class CrashCymbal implements DrawingObject {
+public class CrashCymbalRight implements DrawingObject {
 	
 	double x;
 	double y;
 	double scale_x; 
 	double scale_y;
 
-	public CrashCymbal() {
+	public CrashCymbalRight() {
 		
 		scale_x = 1.0;
 		scale_y = 1.0;
@@ -24,8 +24,8 @@ public class CrashCymbal implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.
-		x = 300;
-		y = 400;
+		x = 670;
+		y = 145;
 		
 		x = x/scale_x;
 		y = y/scale_y;

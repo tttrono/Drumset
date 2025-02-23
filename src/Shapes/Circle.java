@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 
-// The CircleO class is a modification of Ellipse2D.Double class.
-// It has a radius parameter which it renders around a given center point.
+/** The Circle class is a modification of Ellipse2D.Double class.
+ *  It accepts only the center point coordinates and renders the circle from a given radius.*/
 public class Circle implements DrawingObject {
 
 	private double x;
@@ -30,7 +30,7 @@ public class Circle implements DrawingObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		// This part is added so that x and y becomes the center point of the shape object.
+		/**This part is added so that x and y becomes the center point of the shape object.*/
 		AffineTransform reset = g2d.getTransform();
 		g2d.translate(x - radius,
 				      y - radius);
@@ -39,6 +39,8 @@ public class Circle implements DrawingObject {
 		
 		g2d.setColor(color);
 		
+		/** Draw the shape from the given stroke value, 
+		 *  or fill the shape with the given color. */
 		if (stroke != 0) {
 			g2d.setStroke(new BasicStroke(stroke));
 			g2d.draw(circle);

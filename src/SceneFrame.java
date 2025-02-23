@@ -60,6 +60,7 @@ public class SceneFrame {
 		//frame.add(button_controls);
 		//frame.add(button_drumroll);
 		
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.pack();
@@ -78,7 +79,7 @@ public class SceneFrame {
 				BassDrum bass 			 = canvas.getBassDrum();
 				FloorTom floortom  		 = canvas.getFloorTom();
 				RideCymbal ride 		 = canvas.getRideCymbal();
-				CrashCymbal crashcymbal2 = canvas.getCrashCymbal();
+				CrashCymbalRight crashcymbal2 = canvas.getCrashCymbal();
 				
 				if (o == controls) { 
 					//System.out.println("Press B for Bass");
@@ -91,7 +92,7 @@ public class SceneFrame {
 					// testing 
 					//bass.rescale();
 					//floortom.rescale();
-					//crashcymbal2.rescale();
+					//crashcymbalright.rescale();
 					ride.rescale();
 				}
 				

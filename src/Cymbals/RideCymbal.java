@@ -24,8 +24,8 @@ public class RideCymbal implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.
-		x = 930;
-		y = 350;
+		x = 712;
+		y = 340;
 		
 		x = x/scale_x;
 		y = y/scale_y;

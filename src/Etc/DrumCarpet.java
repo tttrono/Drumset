@@ -12,8 +12,11 @@ public class DrumCarpet implements DrawingObject {
 	
 	public DrumCarpet() {
 		// Center x and y as capability of Circle class
-		x = 1281/2;
-		y = 658/2;
+		//x = 1281/2;
+		//y = 658/2;
+		
+		x = 800/2;
+		y = 600/2;
 		
 	}
 	
@@ -37,16 +40,16 @@ public class DrumCarpet implements DrawingObject {
 		}
 		
 		// Draw designs around
-		int circles_num = 36;
-		float angle = 360/circles_num;
-		int radius = 315;
-		
-		for (int a = 0; a <= 360; a += angle ) {
-			double c_x = radius*Math.cos(Math.toRadians(a));
-			double c_y = radius*Math.sin(Math.toRadians(a)); 
-			
-			Circle c = new Circle(x + c_x, y - c_y, 4, 0, Colors.RED_BLOOD);
-			c.draw(g2d);
-		}
+//		int circles_num = 36;
+//		float angle = 360/circles_num;
+//		int radius = 315;
+//		
+//		for (int theta = 0; theta <= 360; theta += angle ) {
+//			double c_x = radius*Math.cos(Math.toRadians(theta));
+//			double c_y = radius*Math.sin(Math.toRadians(theta)); 
+//			
+//			Circle c = new Circle(x + c_x, y - c_y, 4, 0, Colors.RED_BLOOD);
+//			c.draw(g2d);
+//		}
 	}
 }

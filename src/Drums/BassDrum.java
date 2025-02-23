@@ -25,7 +25,7 @@ public class BassDrum implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.		
-		x = 640;
+		x = 800/2;
 		y = 150;
 		
 		x = (int) Math.round(x/scale_x);

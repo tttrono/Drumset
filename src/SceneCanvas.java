@@ -16,9 +16,10 @@ public class SceneCanvas extends JComponent {
 	private BassDrum bass;
 	private FloorTom floortom;
 	
-	//private CrashCymbal crashcymbal1;
-	private CrashCymbal crashcymbal2;
 	private RideCymbal ride;
+	//private CrashCymbal crashcymballeft;
+	private CrashCymbalRight crashcymbalright;
+
 	//private Chair chair;
 	
 	private ArrayList<DrawingObject> parts;
@@ -30,15 +31,17 @@ public class SceneCanvas extends JComponent {
 		carpet = new DrumCarpet();
 		bass = new BassDrum();
 		floortom = new FloorTom();
-		crashcymbal2 = new CrashCymbal();
+		
 		ride = new RideCymbal();
+		crashcymbalright = new CrashCymbalRight();
 		
 		parts.add(carpet);
 		parts.add(bass);
 		parts.add(floortom);
-		//parts.add(crashcymbal1);
-		parts.add(crashcymbal2);
 		parts.add(ride);
+		//parts.add(crashcymballeft);
+		parts.add(crashcymbalright);
+
 		//parts.add(chair);
 	}
 	
@@ -65,8 +68,8 @@ public class SceneCanvas extends JComponent {
 		return floortom;
 	}
 	
-	public CrashCymbal getCrashCymbal() {
-		return crashcymbal2;
+	public CrashCymbalRight getCrashCymbal() {
+		return crashcymbalright;
 	}
 	
 	public RideCymbal getRideCymbal() {

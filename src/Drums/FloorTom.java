@@ -22,8 +22,8 @@ public class FloorTom implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.
-		x = 500;
-		y = 420;
+		x = 550;
+		y = 405;
 		
 		x = x/scale_x;
 		y = y/scale_y;
