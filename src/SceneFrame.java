@@ -10,8 +10,8 @@ public class SceneFrame {
 	private JFrame frame;
 	private JButton controls;
 	private JButton drumroll;
-	private int width;
-	private int height;
+	//private int width;
+	//private int height;
 	
 	SceneCanvas canvas;
 	
@@ -19,8 +19,8 @@ public class SceneFrame {
 	//public SceneFrame(int w, int h) {
 	
 		frame = new JFrame();
-		width = w;
-		height = h;
+		//width = w;
+		//height = h;
 		
 		controls = new JButton("Show controls");
 		drumroll = new JButton("Drum roll");
