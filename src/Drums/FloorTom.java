@@ -3,6 +3,7 @@ package Drums;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 import Shapes.*;
 
@@ -22,7 +23,7 @@ public class FloorTom implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		// Center x and y as is capability of Circle class.
-		x = 550;
+		x = 560;
 		y = 405;
 		
 		x = x/scale_x;
@@ -37,6 +38,12 @@ public class FloorTom implements DrawingObject {
 				  		  {60,  0, Color.LIGHT_GRAY},	
 						  {114, 8, Color.LIGHT_GRAY} 
 		};
+		
+//		ArrayList<ObjectSpec> specs = new ArrayList<ObjectSpec>();
+//		   // new ObjectSpec(x, y, radius, -, stroke, color)
+//		specs.add(new ObjectSpec(x, y, 110, 0, 0, Color.WHITE));
+//		specs.add(new ObjectSpec(x, y, 60 , 0, 0, Color.LIGHT_GRAY));
+//		specs.add(new ObjectSpec(x, y, 114, 0, 0, Color.LIGHT_GRAY));
 		
 		for (int i = 0; i < RSC.length; i++) {
 			//Circle circle = new Circle(x,y,radius,stroke,color);
