@@ -14,6 +14,7 @@ public class SceneCanvas extends JComponent {
 	
 	private DrumCarpet carpet;
 	private BassDrum bass;
+	private MidTom midtom;
 	private FloorTom floortom;
 	
 	private RideCymbal ride;
@@ -30,6 +31,7 @@ public class SceneCanvas extends JComponent {
 		
 		carpet = new DrumCarpet();
 		bass = new BassDrum();
+		midtom = new MidTom();
 		floortom = new FloorTom();
 		
 		ride = new RideCymbal();
@@ -37,6 +39,7 @@ public class SceneCanvas extends JComponent {
 		
 		parts.add(carpet);
 		parts.add(bass);
+		parts.add(midtom);		
 		parts.add(floortom);
 		parts.add(ride);
 		//parts.add(crashcymballeft);
@@ -62,6 +65,10 @@ public class SceneCanvas extends JComponent {
 	
 	public BassDrum getBassDrum() {
 		return bass;
+	}
+	
+	public MidTom getMidTom() {
+		return midtom;
 	}
 	
 	public FloorTom getFloorTom() {

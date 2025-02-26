@@ -76,9 +76,9 @@ public class SceneFrame {
 				Object o = ae.getSource();
 				
 				// testing
-				BassDrum bass 			 = canvas.getBassDrum();
-				FloorTom floortom  		 = canvas.getFloorTom();
-				RideCymbal ride 		 = canvas.getRideCymbal();
+				BassDrum bass = canvas.getBassDrum();
+				FloorTom floortom = canvas.getFloorTom();
+				RideCymbal ride = canvas.getRideCymbal();
 				CrashCymbalRight crashcymbal2 = canvas.getCrashCymbal();
 				
 				if (o == controls) { 
