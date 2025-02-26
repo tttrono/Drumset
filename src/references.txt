@@ -1,7 +1,11 @@
 
 REFERENCES (to be placed in the COA):
 
-1. 	Rescale a drawing in Java (JFrame)
+1. 	Rescale a drawing in Java (JFrame). Marco13. Stack Overflow. March 21, 2016.
 	https://stackoverflow.com/questions/36114584/rescale-a-drawing-in-java-jframe
 	
-2.	
+2.	Objects is a List. Agile Education Research. MOOC.FI.
+	https://java-programming.mooc.fi/part-4/2-objects-in-a-list.
+	Date accessed February 25, 2025.
+
+3. 
