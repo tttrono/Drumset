@@ -58,7 +58,6 @@ public class BassDrum implements DrawingObject {
 		objectspecs.add(new ObjectSpec(x, 270, 310, 20, 0, Colors.SILVER));
 		objectspecs.add(new ObjectSpec(x, 150, 50,  30, 0, Colors.SILVER));				// mid-holder
 		
-
 //		for (int i = 0; i < XY_WHSC.length; i++) {
 //
 //			Rectangle rectangle = new Rectangle( (int) XY_WHSC[i][0],
