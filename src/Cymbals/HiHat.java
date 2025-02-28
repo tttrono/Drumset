@@ -76,4 +76,8 @@ public class HiHat implements DrawingObject {
             scale_y = 1.02;
         }
     }
-}
+
+    public void downscale() {
+        
+    }
+ }

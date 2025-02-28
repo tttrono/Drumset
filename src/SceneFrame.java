@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import Cymbals.*;
-import Drums.*;
 
 /**
  * Sets up the main frame and GUI controls.
