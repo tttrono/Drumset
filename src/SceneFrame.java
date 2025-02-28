@@ -5,41 +5,36 @@ import javax.swing.*;
 import Cymbals.*;
 import Drums.*;
 
-public class SceneFrame {
+public class SceneFrame implements MouseListener {
 	
 	private JFrame frame;
 	private JButton controls;
 	private JButton drumroll;
-	//private int width;
-	//private int height;
 	
 	SceneCanvas canvas;
+
+	BassDrum bass;
+	FloorTom floortom;
+	RideCymbal ride;
 	
 	public SceneFrame() {
-	//public SceneFrame(int w, int h) {
 	
 		frame = new JFrame();
-		//width = w;
-		//height = h;
 		
 		controls = new JButton("Show controls");
 		drumroll = new JButton("Drum roll");
 		
 		canvas = new SceneCanvas();
 		canvas.setPreferredSize(new Dimension(800, 600));
-		//canvas.setPreferredSize(new Dimension(width, height));
+		
+		bass = canvas.getBassDrum();
+		ride = canvas.getRideCymbal();
+		floortom = canvas.getFloorTom();
 	}
 	
 	public void setUpGUI() {
 		
 		Container contentPane = frame.getContentPane();
-		
-		//canvas.setPreferredSize(new Dimension(1281, 658));
-		//canvas.setPreferredSize(new Dimension(800, 600));
-		
-		//FlowLayout flow = new FlowLayout();
-		//cp.setLayout(flow);
-		//frame.setLayout(flow);
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(1,2));
@@ -49,17 +44,9 @@ public class SceneFrame {
 		contentPane.add(canvas, BorderLayout.CENTER);
 		contentPane.add(buttons, BorderLayout.SOUTH);
 		
-		//frame.setSize(width, height);
 		frame.setTitle("Midterm Project - Tibayan - Trono");
 		
-		//frame.add(canvas);
-		//cp.add(canvas);
-		
-		//cp.add(button_controls);
-		//cp.add(button_drumroll);
-		//frame.add(button_controls);
-		//frame.add(button_drumroll);
-		
+		canvas.addMouseListener(this);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -75,25 +62,12 @@ public class SceneFrame {
 			public void actionPerformed(ActionEvent ae) {
 				Object o = ae.getSource();
 				
-				// testing
-				BassDrum bass = canvas.getBassDrum();
-				FloorTom floortom = canvas.getFloorTom();
-				RideCymbal ride = canvas.getRideCymbal();
-				CrashCymbalRight crashcymbal2 = canvas.getCrashCymbal();
-				
 				if (o == controls) { 
 					//System.out.println("Press B for Bass");
 					//System.out.println("Press S for Snare");
-					//or mouse events instead 
 					
 				} else if (o == drumroll) {
 					//Play animation for drumplay
-					
-					// testing 
-					//bass.rescale();
-					//floortom.rescale();
-					//crashcymbalright.rescale();
-					ride.rescale();
 				}
 				
 				canvas.repaint();
@@ -104,4 +78,52 @@ public class SceneFrame {
 		drumroll.addActionListener(buttonListener);
 		
 	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+		Point p = e.getPoint();
+		
+		if (ride.cymbal.contains(p)) {
+			ride.upscale();
+			canvas.repaint();
+		}
+		
+		if (bass.drum.contains(p)) {
+			bass.upscale();
+			canvas.repaint();
+		}
+		
+		if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
+			floortom.upscale();
+			canvas.repaint();
+		}
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+		Point p = e.getPoint();
+		
+		if (ride.cymbal.contains(p)) {
+			ride.downscale();
+			canvas.repaint();
+		}
+		
+		if (bass.drum.contains(p)) {
+			bass.downscale();
+			canvas.repaint();
+		}
+		
+		if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
+			floortom.downscale();
+			canvas.repaint();
+		}
+	}
+
+	public void mouseClicked(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {}
+	
 }

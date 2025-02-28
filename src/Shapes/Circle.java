@@ -10,6 +10,7 @@ import java.awt.geom.Ellipse2D;
  *  It accepts only the center point coordinates and renders the circle from a given radius.*/
 public class Circle implements DrawingObject {
 
+	private double reset_x, reset_y;
 	private double x;
 	private double y;
 	private double radius;
@@ -17,10 +18,15 @@ public class Circle implements DrawingObject {
 	private float stroke;
 	private Color color;	
 	
+	Ellipse2D.Double circle;
+	
 	public Circle(double x, double y, double r, float s, Color c) {
 		
-		this.x = x;
-		this.y = y;
+		this.reset_x = x;
+		this.reset_y = y;
+		
+//		this.x = x;
+//		this.y = y;
 		radius = r;
 		
 		stroke = s;
@@ -30,12 +36,15 @@ public class Circle implements DrawingObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		
+		x = reset_x;
+		y = reset_y;
+		
 		/**This part is added so that x and y becomes the center point of the shape object.*/
 		AffineTransform reset = g2d.getTransform();
 		g2d.translate(x - radius,
 				      y - radius);
 		
-		Ellipse2D.Double circle = new Ellipse2D.Double(0,0,2*radius,2*radius);
+		circle = new Ellipse2D.Double(0,0,2*radius,2*radius);
 		
 		g2d.setColor(color);
 		
@@ -49,6 +58,12 @@ public class Circle implements DrawingObject {
 		}
 		
 		g2d.setTransform(reset);
+		
 	}
+	
+//	@Override
+//    public boolean isWithin(int x, int y) {
+//        return circle.contains(x, y);
+//    }
 }
 
