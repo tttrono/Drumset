@@ -2,6 +2,9 @@ package Shapes;
 
 import java.awt.Color;
 
+/**
+ * Defines custom color constants used in the project.
+ */
 public class Colors {
 
 	public static final Color BRONZE_FINE 	= new Color(203,151,52);
@@ -21,5 +24,7 @@ public class Colors {
 	public static final Color CREAM 		= new Color(249, 225, 187);
 	public static final Color GOLD 			= new Color(157, 107, 46);
 	//public static final Color RED_BLOOD 	= new Color(82, 3, 8);//
-
+    
+    // Additional custom colors
+    public static final Color HIHAT_COLOR   = new Color(180, 180, 180);
 }
