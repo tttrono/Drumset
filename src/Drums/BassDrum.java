@@ -1,8 +1,10 @@
 package Drums;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import Shapes.Colors;
@@ -79,6 +81,11 @@ public class BassDrum implements DrawingObject {
 			
 			rectangle.draw(g2d);
 		}
+		
+		Line2D.Double line = new Line2D.Double(x, 35, x, 55);
+		g2d.setStroke(new BasicStroke(5));
+		g2d.setColor(Color.LIGHT_GRAY);
+		g2d.draw(line);
 		
 		g2d.setTransform(reset);
 		
