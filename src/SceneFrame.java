@@ -5,15 +5,12 @@ import javax.swing.*;
 import Cymbals.*;
 import Drums.*;
 
-public class SceneFrame implements MouseListener {
-	
-	private JFrame frame;
-	//private JButton controls;
-	//private JButton drumroll;
-	
-	SceneCanvas canvas;
+public class SceneFrame implements MouseListener, KeyListener {
+    
+    private JFrame frame;
+    SceneCanvas canvas;
 
-	BassDrum bass;
+    BassDrum bass;
     SnareDrum snare;
     FloorTom floortom;
     HighTom hightom;
@@ -24,18 +21,14 @@ public class SceneFrame implements MouseListener {
     RideCymbal ride;
     CrashCymbalLeft crashcymballeft;
     CrashCymbalRight crashcymbalright;
-	
-	public SceneFrame() {
-	
-		frame = new JFrame();
-		
-		//controls = new JButton("Show controls");
-		//drumroll = new JButton("Drum roll");
-		
-		canvas = new SceneCanvas();
-		canvas.setPreferredSize(new Dimension(800, 600));
-		
-		/** Drum objects */
+    
+    public SceneFrame() {
+        frame = new JFrame();
+        
+        canvas = new SceneCanvas();
+        canvas.setPreferredSize(new Dimension(800, 600));
+        
+        /** Drum objects */
         bass = canvas.getBassDrum();
         snare = canvas.getSnareDrum();
         floortom = canvas.getFloorTom();
@@ -47,110 +40,111 @@ public class SceneFrame implements MouseListener {
         ride = canvas.getRideCymbal();
         crashcymbalright = canvas.getCrashCymbalRight();
         crashcymballeft = canvas.getCrashCymbalLeft();
-	}
-	
-	public void setUpGUI() {
-		
-		Container contentPane = frame.getContentPane();
-		
-//		JPanel buttons = new JPanel();
-//		buttons.setLayout(new GridLayout(1,2));
-//		buttons.add(controls);
-//		buttons.add(drumroll);
-		
-		contentPane.add(canvas, BorderLayout.CENTER);
-		//contentPane.add(buttons, BorderLayout.SOUTH);
-		
-		frame.setTitle("Midterm Project - Tibayan - Trono");
-		
-		canvas.addMouseListener(this);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.pack();
-		frame.setVisible(true);
-		
-	}
-	
-//	public void setupButtonListeners() {
-//
-//		ActionListener buttonListener = new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent ae) {
-//				Object o = ae.getSource();
-//				
-//				if (o == controls) { 
-//					//System.out.println("Press B for Bass");
-//					//System.out.println("Press S for Snare");
-//					
-//				} else if (o == drumroll) {
-//					//Play animation for drumplay
-//				}
-//				
-//				canvas.repaint();
-//			}
-//		};
-//		
-//		controls.addActionListener(buttonListener);
-//		drumroll.addActionListener(buttonListener);
-//		
-//	}
+    }
+    
+    public void setUpGUI() {
+        Container contentPane = frame.getContentPane();
+        contentPane.add(canvas, BorderLayout.CENTER);
+        
+        frame.setTitle("Midterm Project - Tibayan - Trono");
+        
+        canvas.addMouseListener(this);
+        // Enable key events on the canvas
+        canvas.setFocusable(true);
+        canvas.requestFocusInWindow();
+        canvas.addKeyListener(this);
+        
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    // MouseListener methods
+    
+    @Override
+    public void mousePressed(MouseEvent e) {
+        Point p = e.getPoint();
+        
+        if (ride.cymbal.contains(p)) {
+            ride.upscale();
+            canvas.repaint();
+        }
+        
+        if (bass.drum.contains(p)) {
+            bass.upscale();
+            canvas.repaint();
+        }
+        
+        if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
+            floortom.upscale();
+            canvas.repaint();
+        }
+    }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        Point p = e.getPoint();
+        
+        if (bass.drum.contains(p)) {
+            bass.downscale();
+            canvas.repaint();
+        }
+        
+        if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
+            floortom.downscale();
+            canvas.repaint();
+        }
+        
+        if (ride.cymbal.contains(p)) {
+            ride.downscale();
+            canvas.repaint();
+        }
+    }
 
-		Point p = e.getPoint();
-		
-		if (ride.cymbal.contains(p)) {
-			ride.upscale();
-			canvas.repaint();
-		}
-		
-		if (bass.drum.contains(p)) {
-			bass.upscale();
-			canvas.repaint();
-		}
-		
-		if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
-			floortom.upscale();
-			canvas.repaint();
-		}
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		
-		Point p = e.getPoint();
-		
-		if (bass.drum.contains(p)) {
-			bass.downscale();
-			canvas.repaint();
-		}
-		
-		if (floortom.drum.contains(p) && !ride.cymbal.contains(p)) {
-			floortom.downscale();
-			canvas.repaint();
-		}
-		
-//		if (midtom.drum.contains(p) && !ride.cymbal.contains(p)) {
-//			midtom.downscale();
-//			canvas.repaint();
-//		}
-		
-		if (ride.cymbal.contains(p)) {
-			ride.downscale();
-			canvas.repaint();
-		}
-		
-//		if (crashcymbalright.cymbal.contains(p)) {
-//			crashcymbalright.downscale();
-//			canvas.repaint();
-//		}
-	}
-
-	public void mouseClicked(MouseEvent e) {}
-	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {}
-	
+    @Override public void mouseClicked(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseExited(MouseEvent e) {}
+    
+    // KeyListener methods to update instrument positions
+    // Arrow keys move all instruments by 5 pixels in the pressed direction.
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        int dx = 0, dy = 0;
+        int moveAmount = 5;
+        switch (key) {
+            case KeyEvent.VK_LEFT:
+                dx = -moveAmount;
+                break;
+            case KeyEvent.VK_RIGHT:
+                dx = moveAmount;
+                break;
+            case KeyEvent.VK_UP:
+                dy = -moveAmount;
+                break;
+            case KeyEvent.VK_DOWN:
+                dy = moveAmount;
+                break;
+        }
+        if (dx != 0 || dy != 0) {
+            // Update drum positions
+            bass.setPosition(bass.getX() + dx, bass.getY() + dy);
+            snare.setPosition(snare.getX() + dx, snare.getY() + dy);
+            floortom.setPosition(floortom.getX() + dx, floortom.getY() + dy);
+            hightom.setPosition(hightom.getX() + dx, hightom.getY() + dy);
+            midtom.setPosition(midtom.getX() + dx, midtom.getY() + dy);
+            // Update cymbal positions
+            hihat.setPosition(hihat.getX() + dx, hihat.getY() + dy);
+            ride.setPosition(ride.getX() + dx, ride.getY() + dy);
+            crashcymballeft.setPosition(crashcymballeft.getX() + dx, crashcymballeft.getY() + dy);
+            crashcymbalright.setPosition(crashcymbalright.getX() + dx, crashcymbalright.getY() + dy);
+            canvas.repaint();
+        }
+    }
+    
+    @Override public void keyReleased(KeyEvent e) {}
+    @Override public void keyTyped(KeyEvent e) {}
 }

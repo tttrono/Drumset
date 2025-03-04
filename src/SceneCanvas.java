@@ -56,18 +56,18 @@ public class SceneCanvas extends JComponent {
         parts.add(bass);
         //parts.add(snare);
         parts.add(floortom);
-        //parts.add(highTom);
+        //parts.add(hightom);
         parts.add(midtom);       
-        //parts.add(hiHat);
+        //parts.add(hihat);
         parts.add(ride);
         //parts.add(crashcymballeft);
         parts.add(crashcymbalright);
-
         //parts.add(chair);
     }
     
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);  // Clears the background
         Graphics2D g2d = (Graphics2D) g;
         RenderingHints rh = new RenderingHints(
             RenderingHints.KEY_ANTIALIASING,
@@ -115,5 +115,4 @@ public class SceneCanvas extends JComponent {
     public CrashCymbalRight getCrashCymbalRight() {
         return crashcymbalright;
     }
-    
 }

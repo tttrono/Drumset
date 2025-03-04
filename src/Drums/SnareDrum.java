@@ -16,21 +16,43 @@ public class SnareDrum implements DrawingObject {
     private double scale_y;
     
     /**
-     * Constructs a SnareDrum with default scaling.
+     * Constructs a SnareDrum with default scaling and an initial position.
      */
     public SnareDrum() {
         scale_x = 1.0;
         scale_y = 1.0;
+        // Set the initial position once.
+        x = 200;
+        y = 400;
+    }
+    
+    /**
+     * Sets a new position for the snare drum.
+     */
+    public void setPosition(double newX, double newY) {
+        this.x = newX;
+        this.y = newY;
+    }
+    
+    /**
+     * Gets the current x position.
+     */
+    public double getX() {
+        return x;
+    }
+    
+    /**
+     * Gets the current y position.
+     */
+    public double getY() {
+        return y;
     }
     
     @Override
     public void draw(Graphics2D g2d) {
-        // Center position adjusted for an 800x600 canvas
-        x = 200;
-        y = 400;
-        
-        x = x / scale_x;
-        y = y / scale_y;
+        // Use the current x and y values, adjusted for scaling.
+        double drawX = x / scale_x;
+        double drawY = y / scale_y;
         
         AffineTransform reset = g2d.getTransform();
         g2d.scale(scale_x, scale_y);
@@ -43,18 +65,18 @@ public class SnareDrum implements DrawingObject {
         };
         
         for (int i = 0; i < RSC.length; i++) {
-            Circle circle = new Circle(x, y, (int) RSC[i][0], (int) RSC[i][1], (Color) RSC[i][2]);
+            Circle circle = new Circle(drawX, drawY, (int) RSC[i][0], (int) RSC[i][1], (Color) RSC[i][2]);
             circle.draw(g2d);
         }
         
         // Draw circular pegs around the drum
         int pegs_num = 8;
-        float angle = 360 / pegs_num;
+        float angle = 360.0f / pegs_num;
         int radius = 84;
         for (int theta = 0; theta < 360; theta += angle) {
             double c_x = radius * Math.cos(Math.toRadians(theta));
             double c_y = radius * Math.sin(Math.toRadians(theta));
-            Circle peg = new Circle(x + c_x, y - c_y, 2, 0, Color.BLACK);
+            Circle peg = new Circle(drawX + c_x, drawY - c_y, 2, 0, Color.BLACK);
             peg.draw(g2d);
         }
         
@@ -67,5 +89,13 @@ public class SnareDrum implements DrawingObject {
     public void rescale() {
         scale_x += 0.02;
         scale_y += 0.02;
+    }
+    
+    /**
+     * Restores the snare drum to its original scale.
+     */
+    public void downscale() {
+        scale_x = 1.0;
+        scale_y = 1.0;
     }
 }

@@ -18,21 +18,40 @@ public class HiHat implements DrawingObject {
     private double scale_y;
     
     /**
-     * Constructs a HiHat with default scaling.
+     * Constructs a HiHat with default scaling and an initial position.
      */
     public HiHat() {
         scale_x = 1.0;
         scale_y = 1.0;
+        // Set initial position only once.
+        x = 300;
+        y = 150;
+    }
+    
+    /**
+     * Sets a new position for the hi-hat.
+     */
+    public void setPosition(double newX, double newY) {
+        this.x = newX;
+        this.y = newY;
+    }
+    
+    /**
+     * Optional getters if needed.
+     */
+    public double getX() {
+        return x;
+    }
+    
+    public double getY() {
+        return y;
     }
     
     @Override
     public void draw(Graphics2D g2d) {
-        // Set the center coordinates (adjust these values as needed for your 800x600 canvas)
-        x = 300;
-        y = 150;
-        
-        x = x / scale_x;
-        y = y / scale_y;
+        // Use the current x and y values and adjust for scaling.
+        double drawX = x / scale_x;
+        double drawY = y / scale_y;
         
         AffineTransform reset = g2d.getTransform();
         g2d.scale(scale_x, scale_y);
@@ -51,13 +70,13 @@ public class HiHat implements DrawingObject {
         
         // Draw the top hi-hat cymbal with a slight upward offset
         for (int i = 0; i < topCymbal.length; i++) {
-            Circle circle = new Circle(x, y - 3, (int) topCymbal[i][0], (int) topCymbal[i][1], (Color) topCymbal[i][2]);
+            Circle circle = new Circle(drawX, drawY - 3, (int) topCymbal[i][0], (int) topCymbal[i][1], (Color) topCymbal[i][2]);
             circle.draw(g2d);
         }
         
         // Draw the bottom hi-hat cymbal with a slight downward offset
         for (int i = 0; i < bottomCymbal.length; i++) {
-            Circle circle = new Circle(x, y + 3, (int) bottomCymbal[i][0], (int) bottomCymbal[i][1], (Color) bottomCymbal[i][2]);
+            Circle circle = new Circle(drawX, drawY + 3, (int) bottomCymbal[i][0], (int) bottomCymbal[i][1], (Color) bottomCymbal[i][2]);
             circle.draw(g2d);
         }
         
@@ -77,7 +96,11 @@ public class HiHat implements DrawingObject {
         }
     }
 
+    /**
+     * Restores the hi-hat to its original scale.
+     */
     public void downscale() {
-        
+        scale_x = 1.0;
+        scale_y = 1.0;
     }
- }
+}

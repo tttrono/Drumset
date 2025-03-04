@@ -42,6 +42,31 @@ public class Cross implements DrawingObject {
         this.rotation = rotationDegrees;
     }
     
+    /**
+     * Returns the current x-coordinate.
+     */
+    public double getX() {
+        return x;
+    }
+    
+    /**
+     * Returns the current y-coordinate.
+     */
+    public double getY() {
+        return y;
+    }
+    
+    /**
+     * Sets a new position for the cross.
+     *
+     * @param newX the new x-coordinate
+     * @param newY the new y-coordinate
+     */
+    public void setPosition(double newX, double newY) {
+        this.x = newX;
+        this.y = newY;
+    }
+    
     @Override
     public void draw(Graphics2D g2d) {
         AffineTransform original = g2d.getTransform();
