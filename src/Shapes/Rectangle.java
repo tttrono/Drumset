@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
-/** The Square class is a modification of Rectangle2D.Double class.
+/** The Square class is a modification of the Rectangle2D.Double class.
  *  It accepts only the center point coordinates and renders the square from a given width and height.*/
 public class Rectangle implements DrawingObject {
 
@@ -34,8 +34,8 @@ public class Rectangle implements DrawingObject {
 		
 		/**This part is added so that x and y becomes the center point of the shape object.*/
 		AffineTransform reset = g2d.getTransform();
-		g2d.translate(x - (width/2),
-				   	  y - (height/2)
+		g2d.translate(x - (width/2.0),
+				   	  y - (height/2.0)
 		);
 		
 		Rectangle2D.Double rectangle = new Rectangle2D.Double(0,0,width,height);
@@ -54,8 +54,4 @@ public class Rectangle implements DrawingObject {
 		g2d.setTransform(reset);
 		
 	}
-	
-	//void otherAdhocMethods() {
-	//	
-	//}
 }

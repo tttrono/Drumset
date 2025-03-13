@@ -2,37 +2,32 @@ package Etc;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+
+import Shapes.Circle;
 import Shapes.DrawingObject;
 
-/**
- * Represents a simple black rounded chair.
- */
-public class Chair implements DrawingObject {
-    private double x;
-    private double y;
-    private double width;
-    private double height;
-    private double arcWidth;
-    private double arcHeight;
-    
-    /**
-     * Constructs a Chair with default dimensions and position.
-     */
-    public Chair() {
-        // Position adjusted for an 800x600 canvas
-        x = 700;
-        y = 400;
-        width = 50;
-        height = 50;
-        arcWidth = 20;
-        arcHeight = 20;
-    }
-    
-    @Override
-    public void draw(Graphics2D g2d) {
-        g2d.setColor(Color.BLACK);
-        RoundRectangle2D.Double chair = new RoundRectangle2D.Double(x - width / 2, y - height / 2, width, height, arcWidth, arcHeight);
-        g2d.fill(chair);
-    }
+/** Creates a simple circular drum chair
+ *  ideally cushioned for drumming. */
+public class Chair implements DrawingObject{
+
+	double x;
+	double y;
+	
+	public Chair() {
+		
+	}
+
+	public void draw(Graphics2D g2d) {
+		
+		x = 335;
+		y = 550;
+		
+		ArrayList<Circle> chair = new ArrayList<Circle>();
+		chair.add(new Circle(x, y, 60, 0, Color.BLACK));
+		
+		for (DrawingObject part: chair) {
+			part.draw(g2d);
+		}
+	}
 }

@@ -4,16 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.Shape;
 import java.util.ArrayList;
 
-import Shapes.Circle;
-import Shapes.Colors;
-import Shapes.DrawingObject;
-import Shapes.ObjectSpec;
+import Shapes.*;
 
-/** Creates a RideCymbal object. 
- * Defaulted to the mid right of the drumset, it includes 
- * the basic bronze plate and stand. */
 public class RideCymbal implements DrawingObject {
 	
 	double x;
@@ -21,24 +16,22 @@ public class RideCymbal implements DrawingObject {
 	double scale_x; 
 	double scale_y;
 	
-	public Ellipse2D.Double cymbal;
+	public Shape cymbal;
 	
-	/** The RideCymbal constructor sets an initial scale of 1. */
+	//ArrayList<Circle> cymbalplate;
+
 	public RideCymbal() {
 		
 		scale_x = 1.0;
 		scale_y = 1.0;
 	}
 	
-	/** Draws the Ride Cymbal graphic. 
-	 *  Creates the bronze plate with bronze plate with color and circular rings. */
 	public void draw(Graphics2D g2d) {
 		
-		/** Center x and y as is capability of Circle class. */
+		// Center x and y as is capability of Circle class.
 		x = 712;
 		y = 340;
 		
-		/** Calibrate x and y axis according to the scale set. */
 		x = x/scale_x;
 		y = y/scale_y;
 		
@@ -53,6 +46,7 @@ public class RideCymbal implements DrawingObject {
 		ArrayList<ObjectSpec> objectspecs = new ArrayList<ObjectSpec>();
         // new ObjectSpec(x, y, radius, -, stroke, color)
 		objectspecs.add(new ObjectSpec(x, y, 10, 10, 0, Color.BLACK));
+		objectspecs.add(new ObjectSpec(x, y, 3, 3, 0, Color.WHITE));
 		
 		/** Draw the shape objects. */
 		for (int i = 0; i < objectspecs.size(); i++ ) {
@@ -82,20 +76,23 @@ public class RideCymbal implements DrawingObject {
 			radius += 10;
 		}
 		
+		CenteredLine stand = new CenteredLine(x, y, 24, 60, 4, Color.WHITE);
+		stand.draw(g2d);
+		
 		g2d.setTransform(reset);
 	}
 	
-	/** Magnifies the cymbal when it is hit. */
 	public void upscale() {
 		
 		scale_x = 1.02;
 		scale_y = 1.02;
+		
 	}
 	
-	/** Restores the cymbal when it is released. */
 	public void downscale() {
 		
 		scale_x = 1;
 		scale_y = 1;
+	
 	}
 }

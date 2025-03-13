@@ -10,6 +10,7 @@ import java.awt.geom.Ellipse2D;
  *  It accepts only the center point coordinates and renders the circle from a given radius.*/
 public class Circle implements DrawingObject {
 
+	private double reset_x, reset_y;
 	private double x;
 	private double y;
 	private double radius;
@@ -49,6 +50,8 @@ public class Circle implements DrawingObject {
 		}
 		
 		g2d.setTransform(reset);
+		
 	}
+	
 }
 

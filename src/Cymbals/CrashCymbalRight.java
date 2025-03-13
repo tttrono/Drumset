@@ -3,6 +3,8 @@ package Cymbals;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.Shape;
 import java.util.ArrayList;
 
 import Shapes.*;
@@ -16,6 +18,8 @@ public class CrashCymbalRight implements DrawingObject {
 	double y;
 	double scale_x; 
 	double scale_y;
+	
+	public Shape cymbal;
 	
 	ArrayList<Circle> cymbalplate;
 
@@ -44,9 +48,14 @@ public class CrashCymbalRight implements DrawingObject {
 		g2d.scale(scale_x, scale_y);
 		
 		/** Create base cymbal circle. */
-		// cymbalplate.add(new Circle(X, Y, Radius, Stroke, Color));
-		cymbalplate.add(new Circle(x, y, 114, 0, Colors.BRONZE_LIGHT)); 
-		cymbalplate.add(new Circle(x, y, 10,  0, Color.BLACK));
+		
+		cymbal = new Ellipse2D.Double(x-114, y-114, 114*2, 114*2);
+		g2d.setColor(Colors.BRONZE_LIGHT);
+		g2d.fill(cymbal);
+		
+		ArrayList<ObjectSpec> objectspecs = new ArrayList<ObjectSpec>();
+		objectspecs.add(new ObjectSpec(x, y, 10, 10, 0, Color.BLACK));
+		objectspecs.add(new ObjectSpec(x, y, 3, 3, 0, Color.WHITE));
 		
 		/** Create concentric rings. */
 		int number_of_rings = 7;
@@ -54,13 +63,24 @@ public class CrashCymbalRight implements DrawingObject {
 		
 		for (int i = 0; i < number_of_rings; i++) {
 			// cymbalplate.add(new Circle(X, Y, Radius, Stroke, Color));
-			cymbalplate.add(new Circle(x, y, radius+=10, 3, Colors.BRONZE_SHADOW));
+			objectspecs.add(new ObjectSpec(x, y, radius+=10, radius, 3, Colors.BRONZE_SHADOW));
 		}
 		
-		/** Draw shape objects. */
-		for (int i = 0; i < cymbalplate.size(); i++) {			
-			cymbalplate.get(i).draw(g2d);
+		/** Draw the shape objects. */
+		for (int i = 0; i < objectspecs.size(); i++ ) {
+			
+			Circle circle = new Circle( objectspecs.get(i).x,
+												 objectspecs.get(i).y,
+												 objectspecs.get(i).width,
+												 objectspecs.get(i).stroke,
+												 objectspecs.get(i).color 
+			);			
+			
+			circle.draw(g2d);
 		}
+		
+		CenteredLine stand = new CenteredLine(x, y, 24, 45, 4, Color.WHITE);
+		stand.draw(g2d);
 		
 		g2d.setTransform(reset);
 	}
@@ -68,8 +88,8 @@ public class CrashCymbalRight implements DrawingObject {
 	/** Magnifies the cymbal when it is hit. */
 	public void upscale() {
 		
-		scale_x = 1.02;
-		scale_y = 1.02;
+		scale_x = 1.03;
+		scale_y = 1.03;
 	}
 	
 	/** Restores the cymbal when it is released. */
