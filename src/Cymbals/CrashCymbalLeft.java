@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 import Shapes.*;
 
-/** Creates a CrashCymbalRight object. 
- *  Defaulted to the upper right of the drumset, it includes 
+/** Creates a CrashCymbalLeft object. 
+ *  Defaulted to the upper left of the drumset, it includes 
  *  the basic bronze plate and stand. */
-public class CrashCymbalRight implements DrawingObject {
+public class CrashCymbalLeft implements DrawingObject {
 	
 	double x;
 	double y;
@@ -24,7 +24,7 @@ public class CrashCymbalRight implements DrawingObject {
 	ArrayList<Circle> cymbalplate;
 
 	/** The CrashCymbal constructor sets an initial scale of 1. */
-	public CrashCymbalRight() {
+	public CrashCymbalLeft() {
 		
 		scale_x = 1.0;
 		scale_y = 1.0;
@@ -37,7 +37,7 @@ public class CrashCymbalRight implements DrawingObject {
 	public void draw(Graphics2D g2d) {
 		
 		/** Center x and y as is capability of Circle class. */
-		x = 670;
+		x = 150;
 		y = 145;
 		
 		/** Calibrating x and y axis according to the scale set. */
@@ -48,8 +48,8 @@ public class CrashCymbalRight implements DrawingObject {
 		g2d.scale(scale_x, scale_y);
 		
 		/** Create base cymbal circle. */
-		
-		cymbal = new Ellipse2D.Double(x-114, y-114, 114*2, 114*2);
+		int span = 105;
+		cymbal = new Ellipse2D.Double(x-span, y-span, span*2, span*2);
 		g2d.setColor(Colors.BRONZE_LIGHT);
 		g2d.fill(cymbal);
 		
@@ -58,12 +58,12 @@ public class CrashCymbalRight implements DrawingObject {
 		objectspecs.add(new ObjectSpec(x, y, 3, 3, 0, Color.WHITE));
 		
 		/** Create concentric rings. */
-		int number_of_rings = 7;
+		int number_of_rings = 8;
 		double radius = 10;
 		
 		for (int i = 0; i < number_of_rings; i++) {
 			// cymbalplate.add(new Circle(X, Y, Radius, Stroke, Color));
-			objectspecs.add(new ObjectSpec(x, y, radius+=10, radius, 3, Colors.BRONZE_SHADOW));
+			objectspecs.add(new ObjectSpec(x, y, radius+=9, radius, 2, Colors.BRONZE_SHADOW));
 		}
 		
 		/** Draw the shape objects. */
@@ -79,7 +79,7 @@ public class CrashCymbalRight implements DrawingObject {
 			circle.draw(g2d);
 		}
 		
-		CenteredLine stand = new CenteredLine(x, y, 24, 45, 4, Color.WHITE);
+		CenteredLine stand = new CenteredLine(x, y, 24, 85, 4, Color.WHITE);
 		stand.draw(g2d);
 		
 		g2d.setTransform(reset);

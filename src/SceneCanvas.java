@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -10,39 +9,62 @@ import Drums.*;
 import Etc.*;
 import Shapes.DrawingObject;
 
+/** This the drawing canvas for all graphic objects. 
+ *  All parts of the drumset – drums and cymbals –
+ *  are layed over the drum carpet. */
 public class SceneCanvas extends JComponent {
 	
 	private DrumCarpet carpet;
 	private BassDrum bass;
+	private Beater beater;
+	
+	private SnareDrum snare;
+	private HighTom hightom;
 	private MidTom midtom;
 	private FloorTom floortom;
 	
-	private RideCymbal ride;
-	//private CrashCymbal crashcymballeft;
+	private HiHat hihat;
+	private CrashCymbalLeft crashcymballeft;
 	private CrashCymbalRight crashcymbalright;
+	private RideCymbal ride;
 
 	//private Chair chair;
 	
 	private ArrayList<DrawingObject> parts;
 	
+	/** Initializes all drawing parts, to be drawn by paintComponent.*/
 	public SceneCanvas() {
 		
 		parts = new ArrayList<DrawingObject>();
 		
-		carpet = new DrumCarpet();
-		bass = new BassDrum();
-		midtom = new MidTom();
+		carpet 	 = new DrumCarpet();
+		bass 	 = new BassDrum();
+		beater 	 = new Beater();
+		
+		snare 	 = new SnareDrum();
+		hightom  = new HighTom();
+		midtom 	 = new MidTom();
 		floortom = new FloorTom();
 		
-		ride = new RideCymbal();
+		hihat 			 = new HiHat();
+		crashcymballeft  = new CrashCymbalLeft();
 		crashcymbalright = new CrashCymbalRight();
+		ride 			 = new RideCymbal();
+		
+		//chair = new Chair();
 		
 		parts.add(carpet);
 		parts.add(bass);
+		parts.add(beater);
+		
+		parts.add(snare);
+		parts.add(hightom);	
 		parts.add(midtom);		
 		parts.add(floortom);
+		
+		parts.add(hihat);
 		parts.add(ride);
-		//parts.add(crashcymballeft);
+		parts.add(crashcymballeft);
 		parts.add(crashcymbalright);
 
 		//parts.add(chair);
@@ -67,6 +89,18 @@ public class SceneCanvas extends JComponent {
 		return bass;
 	}
 	
+	public Beater getBeater() {
+		return beater;
+	}
+	
+	public SnareDrum getSnareDrum() {
+		return snare;
+	}
+	
+	public HighTom getHighTom() {
+		return hightom;
+	}
+	
 	public MidTom getMidTom() {
 		return midtom;
 	}
@@ -75,7 +109,15 @@ public class SceneCanvas extends JComponent {
 		return floortom;
 	}
 	
-	public CrashCymbalRight getCrashCymbal() {
+	public HiHat getHiHat() {
+		return hihat;
+	}
+	
+	public CrashCymbalLeft getCrashCymbalLeft() {
+		return crashcymballeft;
+	}
+	
+	public CrashCymbalRight getCrashCymbalRight() {
 		return crashcymbalright;
 	}
 	
