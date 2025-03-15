@@ -28,7 +28,8 @@ public class SceneCanvas extends JComponent {
 	private CrashCymbalRight crashcymbalright;
 	private RideCymbal ride;
 
-	//private Chair chair;
+	private Chair chair;
+	private Floor floor;
 	
 	private ArrayList<DrawingObject> parts;
 	
@@ -37,6 +38,7 @@ public class SceneCanvas extends JComponent {
 		
 		parts = new ArrayList<DrawingObject>();
 		
+		floor 	 = new Floor();
 		carpet 	 = new DrumCarpet();
 		bass 	 = new BassDrum();
 		beater 	 = new Beater();
@@ -51,7 +53,9 @@ public class SceneCanvas extends JComponent {
 		crashcymbalright = new CrashCymbalRight();
 		ride 			 = new RideCymbal();
 		
-		//chair = new Chair();
+		chair			 = new Chair();
+		
+		//parts.add(floor);
 		
 		parts.add(carpet);
 		parts.add(bass);
@@ -68,6 +72,7 @@ public class SceneCanvas extends JComponent {
 		parts.add(crashcymbalright);
 
 		//parts.add(chair);
+		
 	}
 	
 	@Override
