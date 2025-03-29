@@ -2,7 +2,7 @@
 /** Drumset is a Java graphic animation with a music theme. 
  *  The complete instrument with drums and cymbals 
  *  can be played by keyboard or mouse click,
- *  with authentic sounds of real percussion. */
+ *  with sounds of real percussion. */
 public class SceneStarter {
 
 	public static void main(String[] args) {
@@ -11,3 +11,4 @@ public class SceneStarter {
 		sceneframe.setUpGUI();
 	}
 
+}
