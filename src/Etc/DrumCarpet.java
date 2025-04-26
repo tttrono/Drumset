@@ -9,7 +9,7 @@ import Shapes.DrawingObject;
 
 /** Draws a drum carpet object. 
  *  The drummer needs a carpet underneath his drumset 
- *  so the bass drum doesn't slide away when kicking. */
+ *  so the bass drum doesn't slide when being kicked. */
 public class DrumCarpet implements DrawingObject {
 	
 	double x;

@@ -55,7 +55,7 @@ public class SceneFrame implements MouseListener, KeyListener {
 		
 		Container contentPane = frame.getContentPane();
 
-		contentPane.add(canvas);
+		//contentPane.add(canvas);
 		contentPane.add(canvas, BorderLayout.CENTER);
 		
 		frame.setTitle("Midterm - Drumset - Trono");
