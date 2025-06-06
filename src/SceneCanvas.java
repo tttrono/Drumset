@@ -55,7 +55,7 @@ public class SceneCanvas extends JComponent {
 		
 		chair			 = new Chair();
 		
-		//parts.add(floor);
+		parts.add(floor);
 		
 		parts.add(carpet);
 		parts.add(bass);
@@ -72,7 +72,6 @@ public class SceneCanvas extends JComponent {
 		parts.add(crashcymbalright);
 
 		//parts.add(chair);
-		
 	}
 	
 	@Override
@@ -129,5 +128,4 @@ public class SceneCanvas extends JComponent {
 	public RideCymbal getRideCymbal() {
 		return ride;
 	}
-	
 }
